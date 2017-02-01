@@ -15,3 +15,13 @@
     @mixin-content;
   }
 }
+
+@define-mixin clearfix {
+  /* This is the new clearfix method to fix floated elements */
+
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}
