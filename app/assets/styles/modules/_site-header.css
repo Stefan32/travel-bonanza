@@ -1,0 +1,22 @@
+.site-header {
+  /* takes header out of the normal flow so that large-hero seems to be behind it */
+  padding: 10px 0px;
+  position: absolute;
+  width: 100%;
+  /* whichever element has a higher z-index value will be placed on top */
+  z-index: 2;
+  background-color: rgba($mainBlue, .3);
+
+  &__btn-container {
+    float: right;
+  }
+
+
+  &__logo {
+    /* takes logo out of the normal flow so that header block height ignores it */
+    position: absolute;
+    top: 0; /* makes the top position of logo 0 */
+    background-color: $mainBlue;
+    padding: 25px 36px;
+  }
+}
