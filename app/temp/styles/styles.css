@@ -1190,6 +1190,10 @@ a {
   }
 }
 
+.site-header__menu-content--is-visible {
+  display: block;/* makes it visible when clicked */
+}
+
 .primary-nav--pull-right {
   float: right;
 }

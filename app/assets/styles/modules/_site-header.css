@@ -54,5 +54,9 @@
     @mixin atMedium {
       display: block;
     }
+
+    &--is-visible {
+      display: block; /* makes it visible when clicked */
+    }
   }
 }
