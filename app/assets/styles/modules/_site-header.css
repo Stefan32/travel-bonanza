@@ -45,15 +45,64 @@
 
   &__menu-icon {
     width: 20px;
-    height: 20px;
-    background-color: #FFF;
+    height: 19px;
     position: absolute;
     z-index: 10; /* to make sure button is always on top and clickable */
     top: 10px;
     right: 10px;
 
+    &::before {
+      content: ""; /* to make sure the bar is visible, can't display empty divs */
+      position: absolute;
+      top: 0;
+      left: 0; /* bar will sit in the top left corner */
+      width: 20px; /* Because that is how wide the menu icon is */
+      height: 3px;
+      background-color: #FFF;
+      transform-origin: 0 0; /* By default, transform origin is 50% 50% */
+      transition: transform .3s ease-out; /* will transition all transform properties */
+    }
+
+    &__middle {
+      position: absolute;
+      top: 8px;
+      left: 0; /* bar will sit in the top left corner */
+      width: 20px; /* Because that is how wide the menu icon is */
+      height: 3px;
+      background-color: #FFF;
+      transition: all .3s ease-out; /* will transition all properties */
+      transform-origin: 0 50%; /* 0 for left edge, 50% for verticle centre */
+    }
+
+    &::after {
+      content: ""; /* to make sure the bar is visible, can't display empty divs */
+      position: absolute;
+      bottom: 0px;
+      left: 0; /* bar will sit in the top left corner */
+      width: 20px; /* Because that is how wide the menu icon is */
+      height: 3px;
+      background-color: #FFF;
+      transform-origin: 0 100%; /* 0 points to left, 100 points to bottom */
+      transition: transform .3s ease-out; /* will transition all transform properties */
+    }
+
     @mixin atMedium {
       display: none;
+    }
+  }
+
+  &__menu-icon--close-x {
+    &::before {
+      transform: rotate(45deg) scaleX(1.25); /* scaleX will only make the x-axis longer */
+    }
+
+    .site-header__menu-icon__middle {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    &::after {
+      transform: rotate(-45deg) scaleX(1.25) translateY(1px); /* translateY moves position down by 1-pixel */
     }
   }
 

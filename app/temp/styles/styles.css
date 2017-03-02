@@ -1176,12 +1176,56 @@ a {
 
 .site-header__menu-icon {
   width: 20px;
-  height: 20px;
-  background-color: #FFF;
+  height: 19px;
   position: absolute;
   z-index: 10;/* to make sure button is always on top and clickable */
   top: 10px;
   right: 10px;
+}
+
+.site-header__menu-icon::before {
+  content: "";/* to make sure the bar is visible, can't display empty divs */
+  position: absolute;
+  top: 0;
+  left: 0;/* bar will sit in the top left corner */
+  width: 20px;/* Because that is how wide the menu icon is */
+  height: 3px;
+  background-color: #FFF;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;/* By default, transform origin is 50% 50% */
+  -webkit-transition: -webkit-transform .3s ease-out;
+  transition: -webkit-transform .3s ease-out;
+  transition: transform .3s ease-out;
+  transition: transform .3s ease-out, -webkit-transform .3s ease-out;/* will transition all transform properties */
+}
+
+.site-header__menu-icon__middle {
+  position: absolute;
+  top: 8px;
+  left: 0;/* bar will sit in the top left corner */
+  width: 20px;/* Because that is how wide the menu icon is */
+  height: 3px;
+  background-color: #FFF;
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;/* will transition all properties */
+  -webkit-transform-origin: 0 50%;
+          transform-origin: 0 50%;/* 0 for left edge, 50% for verticle centre */
+}
+
+.site-header__menu-icon::after {
+  content: "";/* to make sure the bar is visible, can't display empty divs */
+  position: absolute;
+  bottom: 0px;
+  left: 0;/* bar will sit in the top left corner */
+  width: 20px;/* Because that is how wide the menu icon is */
+  height: 3px;
+  background-color: #FFF;
+  -webkit-transform-origin: 0 100%;
+          transform-origin: 0 100%;/* 0 points to left, 100 points to bottom */
+  -webkit-transition: -webkit-transform .3s ease-out;
+  transition: -webkit-transform .3s ease-out;
+  transition: transform .3s ease-out;
+  transition: transform .3s ease-out, -webkit-transform .3s ease-out;/* will transition all transform properties */
 }
 
 @media (min-width: 800px) {
@@ -1189,6 +1233,22 @@ a {
   .site-header__menu-icon {
     display: none;
   }
+}
+
+.site-header__menu-icon--close-x::before {
+  -webkit-transform: rotate(45deg) scaleX(1.25);
+          transform: rotate(45deg) scaleX(1.25);/* scaleX will only make the x-axis longer */
+}
+
+.site-header__menu-icon--close-x .site-header__menu-icon__middle {
+  opacity: 0;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+}
+
+.site-header__menu-icon--close-x::after {
+  -webkit-transform: rotate(-45deg) scaleX(1.25) translateY(1px);
+          transform: rotate(-45deg) scaleX(1.25) translateY(1px);/* translateY moves position down by 1-pixel */
 }
 
 .site-header__menu-content {
