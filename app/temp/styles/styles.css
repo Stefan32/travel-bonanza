@@ -1125,6 +1125,14 @@ a {
   width: 100%;
   /* whichever element has a higher z-index value will be placed on top */
   z-index: 2;
+  -webkit-transition: background-color .3s ease-out;
+  transition: background-color .3s ease-out;
+}
+
+/* when background-color changes, the transition will ease-out over a period of 300 milliseconds */
+
+.site-header--is-expanded {
+  background-color: rgba(47,85,114, .55);
 }
 
 @media (min-width: 800px) {
@@ -1134,8 +1142,11 @@ a {
   }
 }
 
-.site-header__btn-container {
-  float: right;
+@media (min-width: 800px) {
+
+  .site-header__btn-container {
+    float: right;
+  }
 }
 
 .site-header__logo {/* takes logo out of the normal flow so that header block height ignores it */
@@ -1168,6 +1179,7 @@ a {
   height: 20px;
   background-color: #FFF;
   position: absolute;
+  z-index: 10;/* to make sure button is always on top and clickable */
   top: 10px;
   right: 10px;
 }
@@ -1180,22 +1192,51 @@ a {
 }
 
 .site-header__menu-content {
-  display: none;
+  opacity: 0;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);/* Zoom in and out effect */
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;/* transition all proerties */
+  position: relative;/* browser needs position relative in order to acknowledge the z-index property */
+  z-index: -10;
+  padding-top: 90px;
+  text-align: center;
 }
 
 @media (min-width: 800px) {
 
   .site-header__menu-content {
-    display: block;
+    opacity: 1;
+    z-index: 1;
+    padding-top: 0;
+    -webkit-transform: scale(1);
+            transform: scale(1);/* Zoom in and out effect */
   }
 }
 
 .site-header__menu-content--is-visible {
-  display: block;/* makes it visible when clicked */
+  opacity: 1;/* makes it visible when clicked */
+  z-index: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);/* Zoom in and out effect */
 }
 
-.primary-nav--pull-right {
-  float: right;
+.primary-nav {
+  padding-top: 10px;
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav {
+    padding-top: 0;
+  }
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav--pull-right {
+    float: right;
+  }
 }
 
 .primary-nav ul {
@@ -1213,8 +1254,28 @@ a {
 
 .primary-nav li {
   list-style: none;/* remove the bullets */
-  float: left;
-  padding-right: 20px;
+  display: inline-block;
+  padding-right: 7px;
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav li {
+    padding-right: 20px;
+    float: left;
+    display: block;
+  }
+}
+
+.primary-nav li:last-child {
+  padding-right: 0;
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav li:last-child {
+    padding-right: 20px;
+  }
 }
 
 .primary-nav a {
@@ -1222,5 +1283,16 @@ a {
   font-weight: 300;
   text-decoration: none;/* removes underline */
   display: block;
-  padding: 12px 0;
+  padding: 5px 8px;
+  font-size: .8rem;
+  background-color: rgba(47,85,114, .5);
+}
+
+@media (min-width: 800px) {
+
+  .primary-nav a {
+    background-color: transparent;/* no background color */
+    font-size: 1rem;
+    padding: 12px 0;
+  }
 }
