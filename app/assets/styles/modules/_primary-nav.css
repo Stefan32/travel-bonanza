@@ -1,6 +1,6 @@
 .primary-nav {
   padding-top: 10px;
-  
+
   @mixin atMedium {
     padding-top: 0;
   }
@@ -49,6 +49,10 @@
       background-color: transparent; /* no background color */
       font-size: 1rem;
       padding: 12px 0;
+
+      &.is-current-link { /* Will select the links only if they have a class of is-current-link */
+        color: $mainOrange;
+      }
     }
   }
 }
