@@ -589,6 +589,10 @@ a {
   max-width: 976px;
 }
 
+.wrapper--narrow {
+  max-width: 470px;
+}
+
 .wrapper--no-padding-until-medium {
   padding-left: 0;
   padding-right: 0;
@@ -906,6 +910,11 @@ a {
 
 .section-title--blue {
   color: #2f5572;
+}
+
+.section-title--less-margin {
+  margin-bottom: 1.3rem;
+  margin-top: 0;
 }
 
 .section-title__icon {
@@ -1387,4 +1396,100 @@ a {
   opacity: 1;
   -webkit-transform: scale(1);
           transform: scale(1);
+}
+
+.modal {
+  /* we want the window to be front and centre no matter where the user has scrolled to, don't want it at the bottom*/
+  position: fixed;
+  /* higher z-index values will be displayed on top */
+  z-index: 5;
+  background-color: rgba(255, 255, 255, .94);
+  /* This will make the window take up the full height of the page */
+  top: 0;
+  bottom: 0;
+  /* This will make the window take up the full width of the page */
+  left: 0;
+  right: 0;
+  opacity: 0; /* this makes the modal window transparent */
+  /* using just opacity will hide the content, but the cursor will still change and links will still be clickable */
+  visibility: hidden; /* this fixes using only opacity to hide content */
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2); /* this makes the content a bit larger at first */
+  /* to make the transitions smooth and not abrubt */
+  /* all wil transform all changes, at 300ms with the ease-out manner */
+  -webkit-transition: all .3s ease-out;
+  transition: all .3s ease-out;
+}
+
+.modal--is-visible {
+  opacity: 1;/* 1 is fully visible */
+  visibility: visible;
+  -webkit-transform: scale(1);
+          transform: scale(1);/* this will shrink the content back to normal size */
+}
+
+.modal__inner {
+  position: absolute;
+  width: 100%;/* elements that are positioned absolutely will try to shrinkwrap their size, so width 100% fixes that */
+  top: 50%;/* to vertically centre it *//* translate to control the positioning *//* translateY to only control vertical positioning */
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.modal__description {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+.modal__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 2rem;
+  -webkit-transform: scaleX(1.2);
+          transform: scaleX(1.2);/* this stretches the X to make it look more like a close button */
+  -webkit-transform-origin: 100% 0;
+          transform-origin: 100% 0;/* this shifts the transform origin so that the icon streches to the left only and does not appear to be closer to the right side of the screen *//* the origin is now 100% horisontal (all the way to the right) and 0 vertical (all the way at the top) */
+  color: #2f5572;
+  cursor: pointer;/* this makes the cursor into the pointer hand when hovered over */
+}
+
+/* the '&' gives the '&__close selector' */
+
+.modal__close:hover {
+  color: #d59541;
+}
+
+.social-icons {
+  text-align: center;
+}
+
+.social-icons__icon {
+  background-color: #d59541;/* all the icons will sit on a single line, but we can give them different heights */
+  display: inline-block;/* Sets margin to 0 on top, 5right, 5bottom, 5left */
+  margin: 0 5px 5px 5px;/* makes icons take up the same height and width */
+  width: 33%;
+  height: 72px;
+  position: relative;
+}
+
+/* For screens that are considered small or larger */
+
+@media (min-width: 530px) {
+
+  .social-icons__icon {
+    width: 72px;/* Don't want any vertical margin (0) */
+    margin: 0 5px;
+  }
+}
+
+.social-icons__icon .icon {
+  display: block;
+  position: absolute;/* if this is position: absolute, parent element must be position: relative */
+  top: 50%;
+  left: 50%;/* translate to control the positioning *//* -50% pulls it back to the left half of its own width *//* 2nd -50% pulls it up half of its own height */
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }

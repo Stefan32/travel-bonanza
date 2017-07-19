@@ -1,0 +1,33 @@
+.social-icons {
+  text-align: center;
+
+  &__icon {
+    background-color: $mainOrange;
+    /* all the icons will sit on a single line, but we can give them different heights */
+    display: inline-block;
+    /* Sets margin to 0 on top, 5right, 5bottom, 5left */
+    margin: 0 5px 5px 5px;
+    /* makes icons take up the same height and width */
+    width: 33%;
+    height: 72px;
+    position: relative;
+
+    /* For screens that are considered small or larger */
+    @mixin atSmall {
+      width: 72px;
+      /* Don't want any vertical margin (0) */
+      margin: 0 5px;
+    }
+
+    .icon {
+      display: block;
+      position: absolute; /* if this is position: absolute, parent element must be position: relative */
+      top: 50%;
+      left: 50%;
+      /* translate to control the positioning */
+      /* -50% pulls it back to the left half of its own width */
+      /* 2nd -50% pulls it up half of its own height */
+      transform: translate(-50%, -50%);
+    }
+  }
+}
