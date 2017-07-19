@@ -44,7 +44,7 @@
       transform: translateX(0);
 
       .site-header--dark & { /* Targets the site-header class when it is using the dark modifier, the "space" adds a descendant selector, the & selects the logo */
-          transform: scale(.56);
+          transform: scale(.55);
         }
     }
   }
