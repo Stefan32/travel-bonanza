@@ -4,7 +4,6 @@ import smoothScroll from 'jquery-smooth-scroll';
 
 class StickyHeader {
   constructor() {
-    this.lazyImages = $(".lazyload"); /* selects everything with lazyload in class */
     this.siteHeader = $(".site-header"); /* This selects elements with site-header as a class */
     this.headerTriggerElement = $(".large-hero__title"); /* This selects the trigger element, when element reaches the top of the screen it will trigger the event */
     this.createHeaderWaypoint(); /* We want the waypoint to be created as soon as the page loads, so we need to call and run the method from the constructor */
@@ -12,15 +11,6 @@ class StickyHeader {
     this.headerLinks = $(".primary-nav a"); /* Look inside the primary nav element and grab all link elements */
     this.createPageSectionWaypoints();
     this.addSmoothScrolling();
-    this.refreshWaypoints();
-  }
-
-  refreshWaypoints() {
-    /* this.lazyImages selcts the elements */
-    /* load, says that whenever these elements have been loaded, something should happen */
-    this.lazyImages.load(function() {
-      Waypoint.refreshAll();
-    });
   }
 
   addSmoothScrolling() {
